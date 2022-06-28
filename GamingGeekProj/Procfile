@@ -1,1 +1,1 @@
-web: gunicorn GameGeek.wsgi --log-file -
+web: gunicorn GamingGeekPrj.wsgi --log-file -
