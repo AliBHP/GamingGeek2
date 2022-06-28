@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Edit users{% endblock %}
+
+{% block content %}
+
+   <h1>Edit Registered users</h1>
+
+    <label class="WorningLabel" id="lblMsg">{{ request.session.FeedBackMsg }}</label>
+    <br>
+
+    {% if ItemsList %}
+        <hr>
+        <table>
+            <tr><th>&nbsp;Commands&nbsp;</th><th>&nbsp;ID&nbsp;</th><th>&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;</th><th>&nbsp;Accepted?&nbsp;</th>
+                <th>&nbsp;&nbsp;email&nbsp;&nbsp;</th><th>&nbsp;phone&nbsp;</th><th>&nbsp;Email Verified&nbsp;</th><th>&nbsp;Privlage&nbsp;</th></tr>
+        {% for anItem in ItemsList %}
+
+            <tr class=".user">
+                <td ><form method="post" action="/updateUser/"> {% csrf_token %}
+                        <input type="submit" value="Accept" name="action">&nbsp;&nbsp;
+                        <input type="submit" value="Promote" name="action">
+                        <input type="hidden" name="userID" value="{{ anItem.0 }}"/>
+                        <input type="hidden" name="Privlage" value="{{ anItem.9 }}"/>
+                    </form></td>
+                <td class="useredit">{{ anItem.0 }}</td> <!-- ID -->
+                <td>{{ anItem.3 }}</td> <!--! NAME -->
+                <td class="useredit">{{ anItem.7 }}</td> <!-- Accept -->
+                <td >{{ anItem.4 }}</td> <!--! Email -->
+                <td class="useredit">{{ anItem.8 }}</td> <!-- Phone -->
+                <td class="useredit">{{ anItem.6 }}</td> <!-- Email v -->
+                {% if anItem.9 == 0 %}
+                    <td class="useredit">Normal</td> <!--! Privlage -->
+                {% elif anItem.9 == 1 %}
+                    <td class="useredit">Admin</td> <!--! Privlage -->
+                {% elif anItem.9 == 2 %}
+                    <td class="useredit">Editer</td> <!--! Privlage -->
+                {% else %}
+                    <td class="useredit">anItem.9</td> <!--! Privlage -->
+                {% endif %}
+
+            </tr>
+
+        {% endfor %}
+        </table>
+    {% else %}
+        <div>
+            There are no users to edit.
+        </div>
+    {% endif %}
+
+{% endblock %}

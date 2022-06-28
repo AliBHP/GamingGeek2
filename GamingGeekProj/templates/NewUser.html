@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Register new user{% endblock %}
+
+{% block content %}
+
+
+<h1> Register a new User </h1>
+
+<h2> Welcome to the GamingGeek Family </h2>
+
+<p> Please enter your information to register in the system </p>
+
+<form action="/addNewUser/" method="post">
+
+  <div align="center">
+    {% csrf_token %}
+    <table>
+        <tr><td><label for="Name"><b>Your Real Name</b></label></td><td>
+        <input type="text" placeholder="Please enter your name" name="Name" required></td></tr>
+
+        <tr><td><label for="username"><b>Your User Name</b></label></td><td>
+        <input type="text" placeholder="Enter a user name" name="username" required></td></tr>
+
+        <tr><td><label for="password"><b>Password</b></label></td><td>
+        <input type="password" name="password" required></td></tr>
+
+        <tr><td><label for="password_C"><b>Password Confirm</b></label></td><td>
+        <input type="password" name="password_C" required></td></tr>
+
+        <tr><td><label for="email"><b>Email</b></label></td><td>
+        <input type="email" placeholder="Enter your contact email address" name="email" required></td></tr>
+
+        <tr><td><label for="email_c"><b>Email Confirm</b></label></td><td>
+        <input type="email" placeholder="RE-Enter your email address" name="email_c" required></td></tr>
+
+        <tr><td><label for="phone"><b>Your phone Number</b></label></td><td>
+        <input type="text" placeholder="05XXXXXXXX" name="phone"></td></tr>
+
+    </table>
+
+        <br>
+    <button type="submit">Submit</button>
+
+      <br>
+      <br>
+    <label>{{ lblResult }}</label>
+
+      <br>
+        <br>
+
+  </div>
+
+{% endblock %}

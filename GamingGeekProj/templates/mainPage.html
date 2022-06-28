@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Game Geek Store{% endblock %}
+
+{% block content %}
+
+
+    <h1>The avilable items in the store:</h1>
+
+    {% if ItemsList %}
+        <ol>
+            {% for anItem in ItemsList %}
+                <li><h2>{{ anItem.1 }}</h2>
+                    <div class=".aTable">
+                        <table>
+                            <tr><td valign="top">
+                                <table>
+                                    <tr><td class="infoLable" width="150pt">Nick Name  </td><td> {{ anItem.2 }}</td><td width="50pt"></td>
+                                    <tr><td class="infoLable">Description </td><td> {{ anItem.3 }}</td></tr>
+                                    <tr><td class="infoLable">Stoke       </td><td> {{ anItem.4 }} item(s)</td></tr>
+                                    <tr><td class="infoLable">Price       </td><td> {{ anItem.6 }} SR</td></tr>
+                                    <tr><td class="infoLable">Size (W:H:L)</td><td>  {{ anItem.9 }} : {{ anItem.8 }} : {{ anItem.10 }} cm</td></tr>
+                                    <tr><td class="infoLable">Weight      </td><td> {{ anItem.11 }} g</td></tr>
+                                    <tr><td class="infoLable">Players     </td><td> {{ anItem.12 }} - {{ anItem.13 }} players(s)</td></tr>
+                                    <tr><td class="infoLable">Play Time   </td><td> {{ anItem.14 }}</td></tr>
+                                </table></td>
+                            <td width="50pt"><br></td>
+                            <td rowspan="14" ><div align="right"><img src="{{ anItem.15 }}" alt="NO PICTURE PROVIDED"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+
+                <br><hr>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <div> No item avaialbe in the store for now! </div>
+    {% endif %}
+{% endblock %}

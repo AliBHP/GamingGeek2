@@ -1,0 +1,21 @@
+{% block content %}
+
+<form method="post" enctype="multipart/form-data" action="/upload/">
+  {% csrf_token %}
+    <input type="file" name="upload" accept="image/*">
+    <input type="submit" value="Upload the image"/>
+    <input type="hidden" value="{{ theSender }}" name="TheSender">
+
+</form>
+
+<!--See File Uploaded-->
+{% if file_url %}
+    <div align="center">
+          <img src="{{ file_url }}">
+    </div>
+  <br>
+{% else %}
+<p>No Picture was provided for this item.</p>
+{% endif %}
+
+{% endblock %}

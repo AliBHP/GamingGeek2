@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <title>{% block title %}GameingGeek{% endblock %}</title>
+</head>
+
+<body >
+    <table>
+        <tr>
+            <td rowspan="2"><img height="100pt"  src="{% static "logo.png" %}" alt="HOME" ></td>
+            <td>
+                <div id="sidebar">
+                    {% block sidebar %}
+                    <ul>
+                        {% if request.session.username != none %}
+                            <li style="display:inline"><a href="/storehome/">HOME</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        {% endif %}
+
+                        <li style="display:inline"><a href="/about/">About</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+
+                        {% if request.session.Privlage > 0 %}
+                            <li style="display:inline"><a href="/addItems">Add Item</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                            <li style="display:inline"><a href="/editStore">Edit Item</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        {% endif %}
+
+                        {% if request.session.Privlage == 1 %}
+                            <li style="display:inline"><a href="/editUsers">Edit Users</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        {% endif %}
+
+                        {% if request.session.username != none %}
+                            <li style="display:inline"><a href="/">Logout</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        {% else %}
+                            <li style="display:inline"><a href="/">Login</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        {% endif %}
+                    </ul>
+                    {% endblock %}
+                    <hr>
+                    <br>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            {% if request.session.username != none %}
+            <td> &nbsp;&#160;&nbsp;&#160; Welcom Mr. {{ request.session.RealName }}</td>
+            {% endif %}
+        </tr>
+
+    </table>
+    <hr>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+        <hr>
+
+All right are reserver for Gaming Geek webstite
+</html>

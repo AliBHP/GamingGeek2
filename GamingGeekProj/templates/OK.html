@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Operation Success{% endblock %}
+
+{% block content %}
+
+
+    <h1>Done Successfully</h1>
+
+    <p style="color: green;"> {{ The_Message }} </p>
+
+    <br>
+
+    <p> We will return you back to the HOME page in few seconds. If that did not happen, you can simply click on any link you want to navigate to. Thank you for using our website. </p>
+
+
+<script>
+       setTimeout(function(){
+            window.location.href = '/';
+         }, 5000);
+   </script>
+{% endblock %}

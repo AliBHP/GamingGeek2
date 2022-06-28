@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Gaming Geek{% endblock %}
+
+{% block content %}
+
+<br>
+
+  <h1>Welcome to Gamging Geek Entertainment</h1>
+
+<br>
+
+
+<p align="center">please enter your login informaion or <a href="/register/"><b> Register </b></a> your new account: <br><br> </p>
+
+<form action="/loginRequest/" method="post">
+
+  <div align="center">
+    {% csrf_token %}
+
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+      <br>
+      <br>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+        <br>
+        <br>
+
+    <button type="submit">Login</button>
+        <br>
+
+    <br>
+    <label class="WorningLabel"l>{{ msg }}</label>
+    <br>
+
+      <br>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+
+      <br>
+      <br>
+    New to the site? <a href="/register/"><b> Register </b></a>
+
+  </div>
+
+
+</form>
+
+{% endblock %}

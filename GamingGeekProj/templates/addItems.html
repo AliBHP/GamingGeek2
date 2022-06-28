@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Add new item to the store{% endblock %}
+
+{% block content %}
+
+<h2> Adding a new item to the store </h2>
+ <div align="center">
+<table>
+    <tr>
+      <td>
+        <!-- MAIN ENTERING FORM-->
+        <form action="/InsertNewItems/" method="post">
+
+        {% csrf_token %}
+          <table>
+            <tr><td><label for="itemId"><b>Item ID</b></label></td><td>
+            <input type="text" placeholder="e.g. abc123" name="itemId" required></td></tr>
+
+            <tr><td><label for="itemname"><b>Game Name</b></label></td><td>
+            <input type="text" placeholder="The game name" name="itemname" required></td></tr>
+
+            <tr><td><label for="shortname"><b>Nick Name</b></label></td><td>
+            <input type="text" placeholder="Other name known for the game" name="shortname" required></td></tr>
+
+            <tr><td><label for="description"><b>Description</b></label></td><td>
+            <input type="text" placeholder="Short deescription about the game" name="description" required></td></tr>
+
+            <tr><td><label for="Quantity"><b>Stock</b></label></td><td>
+            <input type="text" placeholder="the Store stock" name="Quantity" required></td></tr>
+
+            <tr><td><label for="orginalprice"><b>Buying Price</b></label></td><td>
+            <input type="text" placeholder="Buying price in SR" name="orginalprice" required></td></tr>
+
+            <tr><td><label for="sellingprice"><b>Selling Price</b></label></td><td>
+            <input type="text" placeholder="Selling price in SR" name="sellingprice" required></td></tr>
+
+            <tr><td><label for="category"><b>Category ID</b></label></td><td>
+            <input type="text" placeholder="The type of the game (NUMBER)" name="category" required></td></tr>
+
+            <tr><td><label for="hight"><b>Box Hight</b></label></td><td>
+            <input type="text" placeholder="HIGHT" name="hight" required></td></tr>
+
+            <tr><td><label for="width"><b>Box Width</b></label></td><td>
+            <input type="text" placeholder="WIDTH" name="width" required></td></tr>
+
+            <tr><td><label for="length"><b>Box Length</b></label></td><td>
+            <input type="text" placeholder="LENGTH" name="length" required></td></tr>
+
+            <tr><td><label for="weight"><b>Box Weight</b></label></td><td>
+            <input type="text" placeholder="WEIGHT" name="weight" required></td></tr>
+
+            <tr><td><label for="minplayer"><b>Min Player</b></label></td><td>
+            <input type="text" placeholder="Lowest allowed players" name="minplayer" required></td></tr>
+
+            <tr><td><label for="maxplayer"><b>Max Player</b></label></td><td>
+            <input type="text" placeholder="Max allowed players" name="maxplayer" required></td></tr>
+
+            <tr><td><label for="playtime"><b>Play Time</b></label></td><td>
+            <input type="text" placeholder="Play Time" name="playtime" required></td>
+
+
+          </table>
+
+          <input type="hidden" name="imagePath" value="{{ file_url }}">
+
+          <input type="submit" value="Add the game to Market"/>
+
+        </form>
+      </td>
+
+      <td width="60pt"></td>
+      <td>
+        <!--Simple Form-->
+        <h2 class="my-4">Add an image for the game</h2>
+
+        {% include 'uploadImage.html'%}
+
+      </td>
+    </tr>
+</table>
+
+        <br>
+
+
+      <br>
+      <br>
+    <label>{{ lblResult }}</label>
+
+        <br>
+</div>
+{% endblock %}

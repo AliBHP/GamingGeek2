@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Edit a store's item{% endblock %}
+
+{% block content %}
+
+    <h1>Editing The store</h1>
+
+    <label class="WorningLabel" id="lblMsg">{{ request.session.FeedBackMsg }}</label>
+    <br>
+    {% if ItemsList %}
+        <ul>
+        {% for anItem in ItemsList %}
+            <li>
+                <table>
+                    <tr>
+                        <td>
+                            <form action="/updateItem/" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="itemId" value="{{ anItem.0 }}">
+                                <input type="hidden" name="category" value="{{ anItem.7 }}">
+                                <input type="hidden" name="imagePath" value="{{ anItem.15 }}">
+                                <h2>NAME: <input name="itemname" value="{{ anItem.1 }}"></h2>
+                                <table>
+                                    <tr><td class="infoLable">Nick Name</td>
+                                        <td><input name="shortname" value="{{ anItem.2 }}"></td></tr>
+                                    <tr><td class="infoLable">Description </td>
+                                        <td><input name="description" value="{{ anItem.3 }}"></td></tr>
+                                    <tr><td class="infoLable">Stoke       </td>
+                                        <td><input name="Quantity" value=" {{ anItem.4 }}"> item(s)</td></tr>
+                                    <tr><td class="infoLable">Orginal Price</td>
+                                        <td><input name="orginalprice" value=" {{ anItem.6 }}"> SR</td></tr>
+                                    <tr><td class="infoLable">Selling price</td>
+                                        <td><input name="sellingprice" value=" {{ anItem.5 }}"> SR</td></tr>
+                                    <tr><td class="infoLable">Size (W:H:L)</td>
+                                        <td><input name="width" value="{{ anItem.9 }}" size="2pt"> :
+                                            <input name="hight" value="{{ anItem.8 }}" size="2pt"> :
+                                            <input name="length" value="{{ anItem.10 }}" size="2pt"> cm</td></tr>
+                                    <tr><td class="infoLable">Weight      </td>
+                                        <td><input name="weight" value=" {{ anItem.11 }}"> g</td></tr>
+                                    <tr><td class="infoLable">Players     </td>
+                                        <td><input name="minplayer" value="{{ anItem.12 }}" size="2pt"> -
+                                            <input name="maxplayer" value="{{ anItem.13 }}"  size="2pt"> players(s)</td></tr>
+                                    <tr><td class="infoLable">Play Time   </td>
+                                        <td><input name="playtime" value=" {{ anItem.14 }}"></td></tr>
+                                    <tr><td><input type="submit" value="Save" name="action" size="10pt"></td>
+                                        <td><input type="submit" value="Delete" name="action" size="10pt"></td></tr>
+                                </table>
+                            </form>
+                        </td>
+                        <td width="50pt">
+                            <br>
+                        </td>
+                        <td>
+                            <img src="{{ anItem.15 }}">
+                        </td>
+                    </tr>
+                </table>
+            </li>
+
+            <br><hr>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <div>
+            There are no item in the store. To start adding new item, select <a href="/addItems/">Add Item or clcik here</a>
+        </div>
+    {% endif %}
+
+
+<script>
+       setTimeout(function(){
+            document.getElementById('lblMsg').innerHTML = '';
+         }, 5000);
+   </script>
+{% endblock %}
