@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,36 +79,15 @@ WSGI_APPLICATION = 'GamingGeekProj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if DEBUG:
-
-    DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.mysql',
-                'NAME': 'gamegeek',
-                'USER': 'root',
-                'PASSWORD': 'alibhp110',
-                'HOST': 'localhost',
-                'PORT': '3306',
-            }
-        }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'db.sqlite3',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 
-    #DATABASES = {
-    #    'default': {
-    #        'ENGINE': 'django.db.backends.mysql',
-    #        'NAME': 'heroku_3a6af533857122d',
-    #        'USER': 'b8a0b341a60dcd',
-    #        'PASSWORD': '0d9569a0',
-    #        'HOST': 'us-cdbr-east-05.cleardb.net',
-    #        'PORT': '5432',
-    #    }
-    #}
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
