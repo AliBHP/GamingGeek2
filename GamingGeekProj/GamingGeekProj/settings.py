@@ -93,14 +93,21 @@ if DEBUG:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'heroku_3a6af533857122d',
-            'USER': 'b8a0b341a60dcd',
-            'PASSWORD': '0d9569a0',
-            'HOST': 'us-cdbr-east-05.cleardb.net',
-            'PORT': '5432',
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
         }
     }
+
+    #DATABASES = {
+    #    'default': {
+    #        'ENGINE': 'django.db.backends.mysql',
+    #        'NAME': 'heroku_3a6af533857122d',
+    #        'USER': 'b8a0b341a60dcd',
+    #        'PASSWORD': '0d9569a0',
+    #        'HOST': 'us-cdbr-east-05.cleardb.net',
+    #        'PORT': '5432',
+    #    }
+    #}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
